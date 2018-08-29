@@ -19,4 +19,11 @@ module.exports.policies = {
 
   // '*': true,
 
+  UserController:
+  {
+		'*': 'VerifyToken',
+		login: true,
+		logout: true,
+	}
+
 };

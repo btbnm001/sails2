@@ -28,6 +28,12 @@ module.exports.routes = {
     view: 'pages/homepage'
   },
 
+  '/user/loginPage':
+  {
+    view: 'pages/login'
+  },
+  
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
@@ -55,16 +61,14 @@ module.exports.routes = {
   //  ║║║║╚═╗║
   //  ╩ ╩╩╚═╝╚═╝
 
-'get /user/all'				: 'UserController.all',  
+'get /user/all'				    : 'UserController.all',  
 'get /user/find/:mail'		: 'UserController.find',  
-'post /user/add'			: 'UserController.add',  
-'post /user/upd/:mail'		: 'UserController.upd',  
-'post /user/del/:mail'		: 'UserController.del',
+'get /user/find'			    : 'UserController.find',  
+'post /user/add'			    : 'UserController.add',  
+'post /user/upd'			    : 'UserController.upd',  
+'post /user/del'			    : 'UserController.del',
 
-'get /user/all'				: 'UserController.all',  
-'get /user/find'			: 'UserController.find',  
-'get /user/add'			: 'UserController.add',  
-'get /user/upd'			: 'UserController.upd',  
-'get /user/del'			: 'UserController.del'  
+'/user/login'             : 'UserController.login',
+'/user/logout'            : 'UserController.logout',
 
 };

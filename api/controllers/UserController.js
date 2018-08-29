@@ -5,6 +5,10 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+var jwt = require('jsonwebtoken')
+//var base64url = require('base64-url');
+var CST = sails.config.CST;
+
 module.exports = 
 {
 	all: function (req, res) 
@@ -25,7 +29,7 @@ module.exports =
 				//{
 					/*"success": true,
 					"message": "Records fetched",
-					"data":*/ users/*.pop().toJSON() //báo lỗi cú pháp nếu ko xóa {}, hình như 1.0 chỉ cần res.json*/
+					"data":*/ users/*.pop().toJSON() //báo lỗi cú pháp nếu ko xóa {}, 1.0 chỉ cần res.json?*/
 				//} nếu để sẽ xuất hiện node users
 				);
 			})
@@ -59,11 +63,12 @@ module.exports =
 				}
 
 				return res.send(
-				{
+				//{
 					/*"success": true,
 					"message": "Records fetched",
 					"data":*/ user
-				});
+				//}
+				);
 			})
 			.catch(function (err) 
 			{
@@ -133,7 +138,7 @@ module.exports =
 	del: function (req, res) 
 	{//req.body;
 		var i_d = /*"ObjectId(''" +*/ req.param("id") /*+ "'')"*/;
-//return res.redirect("http://localhost:1337?id="+i_d);
+		//return res.send(i_d)
 		User.destroy( {id:i_d} )
 			.then(function (user)
 			{
@@ -152,6 +157,28 @@ module.exports =
 					"message": "Unable to delete record"
 				});
 			});
+	},
+
+	login: function(req, res)
+	{
+		var token = jwt.sign({i_d: 'admin'}, CST.KEY, {expiresIn: 30*60} )
+		
+		// web apps
+/*		res.cookie('sailsjwt', token, {
+			signed: true,
+			// domain: '.yourdomain.com',
+			//maxAge: sails.config.jwtExpires
+		})
+		return res.redirect("/user/all");
+*/
+		// mobile/desktop apps
+		return res.send(token)
+	},
+
+	logout: function(req, res) {
+		res.clearCookie('sailsjwt')
+		//req.user = null
+		return res.redirect("/user/loginPage");
 	},
 	
 	action: function(req, res) { sails.log.info(req.body); }
