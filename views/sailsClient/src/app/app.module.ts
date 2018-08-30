@@ -7,11 +7,13 @@ import { HttpModule } from '@angular/http';
 import {FormsModule} from '@angular/forms'
 import { DemoComponent } from './demo/demo.component';
 import { DemoService } from './demo/demo.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent
+    DemoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -14,3 +14,6 @@
 - npm install jquery --save
 - npm insstall @types/jquery --save-dev
 - angular.json import: "./node_modules/jquery/dist/jquery.min.js"
+
+//-- install ngx-bootstrap --//
+- npm install ngx-bootstrap --save
