@@ -68,7 +68,7 @@ module.exports.routes = {
 'post /user/upd'			    : 'UserController.upd',  
 'post /user/del'			    : 'UserController.del',
 
-'/user/login'             : 'UserController.login',
+'post /user/login'         : 'UserController.login',
 '/user/logout'            : 'UserController.logout',
 
 };
